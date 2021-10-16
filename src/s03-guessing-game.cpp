@@ -1,11 +1,10 @@
 #include <iostream>
-#include <string>
 
 int main()
 {
+    srand(time(NULL));
     int number = (rand()%100)+1;
     int number2;
-    srand(time(NULL));
     do{
         std::cout << "guess: ";
         std::cin >> number2;
@@ -22,11 +21,9 @@ int main()
             break;
         }
     }
-    while(number==number2);
-    if(number==number2)
-    {
-        std::cout << "just right!";
-    }
+    while(number!=number2);
+
+    std::cout << "just right! \n";
 
     return 0;
 }
