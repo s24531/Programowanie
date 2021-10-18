@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <unistd.h>
 
 auto main (int argc, char* argv []) -> int
 {
@@ -7,6 +8,7 @@ auto main (int argc, char* argv []) -> int
     for(auto i=a;i>=0;--i)
     {
         std::cout << i << "\n";
+        sleep(1);
     }
     return 0;
 }
