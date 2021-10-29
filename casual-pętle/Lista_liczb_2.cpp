@@ -1,4 +1,4 @@
-#include <iostream>
+include <iostream>
 
 auto main() -> int
 {
@@ -12,13 +12,15 @@ auto main() -> int
     std::cout << "Podaj drugą liczbę: ";
     std::cin >> b;
 
-    std::cout << "Podaj trzecią liczbę: ";
-    std::cin >> c;
-
-    if (c==0)
+    do
     {
-        std::cout << "Nie można dzielic przez zero\n";
-    }
+        std::cout << "Podaj trzecią liczbę: ";
+        std::cin >> c;
+        if (c==0)
+        {
+            std::cout << "Nie można dzielić przez zero\n";
+        }    
+    } while (c==0);
 
     for(auto i=a; i<b; i++)
     {
