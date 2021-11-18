@@ -2,9 +2,7 @@
 
 auto main() -> int
 {
-    int a;
-    int b;
-    int s;
+    int a, b, s;
 
     std::cout << "Podaj pierwszą liczbę: ";
     std::cin >> a;
@@ -14,18 +12,31 @@ auto main() -> int
 
     do
     {
-        std::cout << "Podaj trzecią liczbę: ";
+        std::cout << "Podaj krok: ";
         std::cin >> s;
         if (s==0)
         {
             std::cout << "Krok nie może mieć wartości zero\n";
-        }    
-    } while (s==0);
-
-    for(auto i=a; i<b; i=i+s)
+        }
+    } 
+    while (s==0);
+      
+    if(a<b)
     {
-        std::cout << i << " ";       
+        for(auto i=a; i<b; i=i+s)
+        {
+            std::cout << i << " ";       
+        }
     }
-    
+    else
+    {
+        for (auto i=a; i>b; i=i-s)
+        {
+            std::cout << i << " ";
+        }
+        
+    }
+
+    std::cout << "\n";
     return 0;
 }
