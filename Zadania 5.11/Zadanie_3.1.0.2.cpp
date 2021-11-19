@@ -1,6 +1,6 @@
 #include <iostream>
 
-auto iota (int a[], int n, int liczba)
+auto iota (int a[], int n, int liczba) -> void
 {
     a[n];
     for(auto i=0; i<n; i++)
