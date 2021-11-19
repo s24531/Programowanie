@@ -2,12 +2,10 @@
 
 auto main() -> int
 {
-    int liczba;
+    int j, liczba, liczba2, zlicz=0;
 
     std::cout << "Podaj liczbę: ";
     std::cin >> liczba;
-    
-    int zlicz = 0;
 
     for(auto i=liczba; i>=1; --i)
     {
