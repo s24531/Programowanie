@@ -17,35 +17,23 @@ auto main() -> int
         if (s==0)
         {
             std::cout << "Krok nie może mieć wartości zero\n";
-<<<<<<< HEAD
         }    
-        if (s<0)
-        {
-            std::cout << "Krok nie może być ujemny\n";
-        }
-    } while (s>0);
+    } while (s==0);
 
-    for(auto i=a; i<b; i=i+s)
-=======
-        }
-    } 
-    while (s==0);
-      
-    if(a<b)
+    if(b>a)
     {
         for(auto i=a; i<b; i=i+s)
         {
-            std::cout << i << " ";       
+            std::cout << i << " ";
         }
     }
-    else
->>>>>>> 4b1003e0f5fb79080c7b803d9c7e7a04f702a337
+
+    if(b<a)
     {
         for (auto i=a; i>b; i=i-s)
         {
             std::cout << i << " ";
         }
-        
     }
 
     std::cout << "\n";
