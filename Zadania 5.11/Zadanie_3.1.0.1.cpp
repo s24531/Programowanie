@@ -1,6 +1,6 @@
 #include <iostream>
 
-auto init (int a[], int n)
+auto init (int a[], int n) -> void
 {
     a[n];
     for(auto i=0; i<n; i++)
