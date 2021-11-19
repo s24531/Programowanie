@@ -20,7 +20,11 @@ auto main() -> int
         {
             std::cout << "Krok nie może mieć wartości zero\n";
         }    
-    } while (s==0);
+        if (s<0)
+        {
+            std::cout << "Krok nie może być ujemny\n";
+        }
+    } while (s>0);
 
     for(auto i=a; i<b; i=i+s)
     {
