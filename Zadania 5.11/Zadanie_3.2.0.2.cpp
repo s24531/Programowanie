@@ -1,8 +1,8 @@
 #include <iostream>
 
-auto print(std::string a) -> void
+auto print(std::string *a) -> void
 {   
-    std::cout << &a << " = " << a << "\n";
+    std::cout << a << " = " << *a << "\n";
 }
 
 
@@ -12,7 +12,7 @@ auto main() -> int
     
     std::cout << "Podaj słowo: ";
     std::cin>>b;
-    print(b);
+    print(&b);
 
     return 0;
 }
