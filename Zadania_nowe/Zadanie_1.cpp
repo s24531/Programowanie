@@ -35,9 +35,9 @@ auto main() -> int
             pierwsze << i << " ";
         }
     }
-    std::string s = pierwsze.str();
-    std::cout << "1 linijka: " << s << "\n";
-    std::cout << "2 linijka: " << s << "\n";
+    std::string a = pierwsze.str();
+    std::cout << "1 linijka: " << a << "\n";
+    std::cout << "2 linijka: " << a << "\n";
 
     return 0;
 }
