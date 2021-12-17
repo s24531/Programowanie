@@ -3,7 +3,7 @@
 #include <string>
 #include <cstdlib>
 
-auto filter_palindromes(std::vector<std::string> words, int ilosc) -> std::vector<std::string>
+auto filter_palindromes(std::vector<std::string> words, int ilosc) -> void
 {
     std::string odwrocony;
     std::string wyraz;
@@ -26,7 +26,11 @@ auto filter_palindromes(std::vector<std::string> words, int ilosc) -> std::vecto
         odwrocony="";
     }
 
-    return words;
+    for(int i=0; i<words.size(); i++) 
+    { 
+        std::cout << words[i] << " ";
+    }
+    std::cout << "\n";
 }
 
 auto main() -> int
@@ -45,7 +49,8 @@ auto main() -> int
         wyrazy.push_back(wyraz);
     }
 
-    std::cout << "Palindromy: " << filter_palindromes(wyrazy, ilosc) << "\n";
+    std::cout << "Palindromy: ";
+    filter_palindromes(wyrazy, ilosc);
 
     return 0;
 }
