@@ -29,7 +29,7 @@ auto main() -> int
             std::cout << "Podaj ilość kolumn pierwszej macierzy: ";
             std::cin >> wym2;
 
-            int *macierzA = new int [wym1 * wym2];
+            int* macierzA = new int [wym1 * wym2];
 
 
             int wym3, wym4;
@@ -39,11 +39,11 @@ auto main() -> int
             std::cout << "Podaj ilość kolumn drugiej macierzy: ";
             std::cin >> wym4;
 
-            int *macierzB = new int [wym3 * wym4];
+            int* macierzB = new int [wym3 * wym4];
             
 
-            int *dodaj =  new int [wym1 * wym2];
-            int *odejmij = new int [wym1 * wym2];
+            int* dodaj =  new int [wym1 * wym2];
+            int* odejmij = new int [wym1 * wym2];
             
             //jeśli macierze mają inne rozmiary to zakończ program
             if(wym1!=wym3 || wym2!=wym4)
@@ -124,11 +124,97 @@ auto main() -> int
         }
         case 2:
         {
+            int wym1, wym2;
+            
+            std::cout << "Podaj ilosc wierszy pierwszej macierzy: "; 
+            std::cin >> wym1;
+            std::cout << "Podaj ilość kolumn pierwszej macierzy: ";
+            std::cin >> wym2;
+
+            int* macierzA = new int [wym1 * wym2];
+
+
+            int wym3, wym4;
+
+            std::cout << "Podaj ilosc wierszy drugiej macierzy: "; 
+            std::cin >> wym3;
+            std::cout << "Podaj ilość kolumn drugiej macierzy: ";
+            std::cin >> wym4;
+
+            int* macierzB = new int [wym3 * wym4];
+            
+            //jeśli liczba kolumn w macierzy A i liczba wierszy w macierzy B są różne to zakończ program
+            if(wym2!=wym3)
+            {   
+                atexit(exit1);
+                exit(0);
+            }
+
 
             break;
         }
         case 3:
-        {
+        {   
+            int wym1, wym2;
+            
+            std::cout << "Podaj ilosc wierszy macierzy: "; 
+            std::cin >> wym1;
+            std::cout << "Podaj ilość kolumn macierzy: ";
+            std::cin >> wym2;
+        
+            int* macierzA = new int [wym1 * wym2];
+            
+            //wprowadzanie liczb do macierzy
+            std::cout << "Wprowadź elementy w pierwszej macierzy: \n";
+            for(auto i = 0; i < wym1; i++)
+            {
+                for(auto j = 0; j < wym2; j++)
+                {
+                    std::cout << "A[" << i+1 << "][" << j+1 << "]: ";
+                    std::cin >> macierzA[i*wym2+j];
+                }
+            }
+            
+
+            //wyświetlenie podanej przez uzytkownika macierzy
+            std::cout << "Macierz podana przez użytkownika: \n";
+            for(auto i = 0; i < wym1; i++)
+            {
+                for(auto j = 0; j < wym2; j++)
+                {
+                    std::cout << macierzA[i*wym1+j];
+                    if(j==wym2-1)
+                    {
+                        std::cout << "\n";
+                    }
+                    else
+                    {
+                        std::cout << " ";
+                    }
+                }
+            }
+
+
+            std::swap(wym1,wym2);
+
+
+            //wyświetlenie transponowanej macierzy
+            std::cout << "Macierz transponowana: \n";
+            for(auto i = 0; i < wym1; i++)
+            {
+                for(auto j = 0; j < wym2; j++)
+                {
+                    std::cout << macierzA[j*wym1+i];
+                    if(j==wym2-1)
+                    {
+                        std::cout << "\n";
+                    }
+                    else
+                    {
+                        std::cout << " ";
+                    }
+                }
+            }
 
 
             break;
