@@ -1,16 +1,31 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string>
-#include <cmath>  
+#include <cmath>
+#include <vector>  
 
 auto error () -> void
 {
     std::cout << "ERR\n";
 }
 
+auto enter_into_vector(std::vector<std::vector<int>> matrix, int row, int col, int el) -> std::vector<std::vector<int>>
+{
+    std::vector<int> matrix1;
+    for(auto i = 0; i < row; i++) 
+    {
+        for(auto j = 0; j < col; j++)
+        {
+            matrix1.push_back(el);
+        }
+        matrix.push_back(matrix1);
+    }
+    return matrix;
+}
+
 auto check_number (std::string num) -> bool
 {
-    for (auto i = 0; i < num.length(); i++)
+    for(auto i = 0; i < num.length(); i++)
     {
         if(num[0]=='-')
         {
@@ -37,23 +52,24 @@ auto check_number (std::string num) -> bool
     }
 }
 
-auto enter_matrix (int row1, int col1)
+auto enter_matrix (int row1, int col1) -> std::vector<std::vector<int>>
 {
-    int matrix[20][20];
+    std::vector<std::vector<int>> matrix;
     std::string num;
     int num1;
 
-    //wprowadzanie liczb do macierzy
-    for(auto i = 0; i < row1; i++)
+    for(int i = 0; i < row1;  i++) 
     {
-        for(auto j = 0; j < col1; j++)
+        std::vector<int> matrix1;
+        for(int j = 0; j < col1 ; j++)
         {
             std::cout << "A[" << i+1 << "][" << j+1 << "]: ";
             std::cin >> num;
+
             if(check_number(num))
             {   
                 num1 = std::stoi(num);
-                matrix[i][j] = num1;
+                matrix1.push_back(num1);
             }
             else
             {
@@ -61,38 +77,29 @@ auto enter_matrix (int row1, int col1)
                 j--;
             }
         }
+        matrix.push_back(matrix1);
     }
     return matrix;
 }
 
-auto display_matrix(int matrix[20][20], int row1, int col1) -> void
+auto display_matrix(std::vector<std::vector<int>> matrix) -> void
 {
-    std::cout << "\nMacierz podana przez użytkownika:\n";
-    for(auto i = 0; i < row1; i++)
+    for(auto i = 0; i < matrix.size(); i++)
     {
-        for(auto j = 0; j < col1; j++)
-        {
-            std::cout << matrix[i][j];
-            if(j==col1-1)
-            {
-                std::cout << "\n";
-            }
-            else
-            {
-                std::cout << " ";
-            }
-        }
+        for(auto j = 0; j < matrix[i].size(); j++)
+        std::cout << matrix[i][j] << " ";
+        std::cout << std::endl;
     }
 }
 
-auto Sarrus_method(int matrix[20][20]) -> int
-{
-    int oper1 = matrix[0][0] * matrix[1][1] * matrix[2][2] + matrix[0][1] * matrix[1][2] * matrix[2][0] + matrix[0][2] * matrix[1][0] * matrix[2][1];
-    int oper2 = matrix[0][2] * matrix[1][1] * matrix[2][1] + matrix[0][0] * matrix[1][2] * matrix[2][1] + matrix[0][1] * matrix[1][0] * matrix[2][2];
-    int result = oper1 - oper2;
+// auto Sarrus_method(int** matrix[20][20]) -> int
+// {
+//     int oper1 = matrix[0][0] * matrix[1][1] * matrix[2][2] + matrix[0][1] * matrix[1][2] * matrix[2][0] + matrix[0][2] * matrix[1][0] * matrix[2][1];
+//     int oper2 = matrix[0][2] * matrix[1][1] * matrix[2][1] + matrix[0][0] * matrix[1][2] * matrix[2][1] + matrix[0][1] * matrix[1][0] * matrix[2][2];
+//     int result = oper1 - oper2;
 
-    return result;
-}
+//     return result;
+// }
 
 // auto Laplace_method (int matrix, int size) -> int
 // {
@@ -118,10 +125,10 @@ auto main() -> int
 {
     int calc;
 
-    int matrixA[20][20];
+    std::vector<std::vector<int>> matrixA;    
     int row1, col1;
     
-    int matrixB[20][20];
+    std::vector<std::vector<int>> matrixB;
     int row2, col2;
 
     std::cout << "Kalkulator macierzowy\n";
@@ -164,29 +171,35 @@ auto main() -> int
             matrixB = enter_matrix(row2, col2);        
 
 
-            int add[20][20];
-            int sub[20][20];
-
+            std::vector<std::vector<int>> add;
+            std::vector<std::vector<int>> sub;
+            int addnum, subnum;
 
             //dodawanie i odejmowanie macierz
             for(auto i = 0; i < row1; i++)
             {
+                std::vector<int> add1;
+                std::vector<int> sub1;
                 for(auto j = 0; j < col1; j++)
                 {
-                    add[i][j] = matrixA[i][j] + matrixB[i][j];
-                    sub[i][j] = matrixA[i][j] - matrixB[i][j];
+                    addnum = matrixA[i][j] + matrixB[i][j];
+                    subnum = matrixA[i][j] - matrixB[i][j];
+                    add1.push_back(addnum);
+                    sub1.push_back(subnum);
                 }
+                    add.push_back(add1);
+                    sub.push_back(sub1);
             }
 
-
+            
             //wyświetlenie wyniku dodawania
-            std::cout << "Wynik dodawania:\n";
-            display_matrix(add, row1, col2);
+            std::cout << "\nWynik dodawania:\n";
+            display_matrix(add);
 
 
             //wyświetlenie wyniku odejmowania
-            std::cout << "Wynik odejmowania:\n";
-            display_matrix(sub, row1, col2);
+            std::cout << "\nWynik odejmowania:\n";
+            display_matrix(sub);
 
 
             break;
@@ -222,39 +235,27 @@ auto main() -> int
             matrixB = enter_matrix(row2, col2);
 
 
-            int result[20][20];
+            std::vector<std::vector<int>> result;
             int temp;
             
             for(auto i = 0; i < row1; i++)
             {
+                std::vector<int> result1;
                 for(auto j = 0; j < col2; j++)
                 {
                     temp = 0;
                     for(auto k = 0; k < row1; k++)
                     {
-                        temp += matrixA[i][k] * matrixB[k][j];
+                        temp = temp + matrixA[i][k] * matrixB[k][j];
                     }                 
-                    result[i][j] = temp;
+                    result1.push_back(temp);
                 }
+                result.push_back(result1);
             }
 
 
-            std::cout << "Wynik mnożenia: \n";
-            for(auto i = 0; i < row1; i++)
-            {
-                for(auto j = 0; j < col2; j++)
-                {
-                    std::cout << result[i][j];
-                    if(j==col2-1)
-                    {
-                        std::cout << "\n";
-                    }
-                    else
-                    {
-                        std::cout << " ";
-                    }
-                }
-            }
+            std::cout << "\nWynik mnożenia:\n";
+            display_matrix(result);
 
             break;
         }
@@ -299,54 +300,54 @@ auto main() -> int
 
             break;
         }
-        case 4:
-        {
-            int result1;
+        // case 4:
+        // {
+        //     int result1;
 
-            std::cout << "Podaj ilość wierszy macierzy: "; 
-            std::cin >> row1;
-            std::cout << "Podaj ilość kolumn macierzy: ";
-            std::cin >> col1;
-
-
-            //jeśli liczba kolumn i wierszy nie są sobie równe to zakończ program
-            if(row1!=col1)
-            {   
-                atexit(error);
-                exit(0);
-            }
+        //     std::cout << "Podaj ilość wierszy macierzy: "; 
+        //     std::cin >> row1;
+        //     std::cout << "Podaj ilość kolumn macierzy: ";
+        //     std::cin >> col1;
 
 
-            std::cout << "Wprowadź elementy do macierzy: \n";
-            matrixA = enter_matrix(row1, col1);
-
-            if(row1 == 1 && col1 == 1)
-            {
-                result1 = matrixA[0][0]; 
-            }
-            else if(row1 == 2 && col1 == 2)
-            {
-                result1 = matrixA[0][0] * matrixA[1][1] - matrixA[0][1] * matrixA[1][1];
-            }
-            else if(row1 == 3 && col1 == 3)
-            {
-                //Metoda Sarrusa;
-                result1 = Sarrus_method(matrixA);
-            }
-            else
-            {
-                //Metoda Laplace'a
-                //result1 = Laplace_method(matrixA, row1); //<- potrzebny jest tylko jeden rozmiar jesli obydwie liczby są takie same 
-            }
-
-            display_matrix(matrixA, row1, col1);
+        //     //jeśli liczba kolumn i wierszy nie są sobie równe to zakończ program
+        //     if(row1!=col1)
+        //     {   
+        //         atexit(error);
+        //         exit(0);
+        //     }
 
 
-            std::cout << "\nWyznacznik macierzy: " << result1 << "\n";
+        //     std::cout << "Wprowadź elementy do macierzy: \n";
+        //     matrixA = enter_matrix(row1, col1);
+
+        //     if(row1 == 1 && col1 == 1)
+        //     {
+        //         result1 = matrixA[0][0]; 
+        //     }
+        //     else if(row1 == 2 && col1 == 2)
+        //     {
+        //         result1 = matrixA[0][0] * matrixA[1][1] - matrixA[0][1] * matrixA[1][1];
+        //     }
+        //     else if(row1 == 3 && col1 == 3)
+        //     {
+        //         //Metoda Sarrusa;
+        //         result1 = Sarrus_method(matrixA);
+        //     }
+        //     else
+        //     {
+        //         //Metoda Laplace'a
+        //         //result1 = Laplace_method(matrixA, row1); //<- potrzebny jest tylko jeden rozmiar jesli obydwie liczby są takie same 
+        //     }
+
+        //     display_matrix(matrixA, row1, col1);
 
 
-            break;
-        }
+        //     std::cout << "\nWyznacznik macierzy: " << result1 << "\n";
+
+
+        //     break;
+        // }
     }
     return 0;
 }
