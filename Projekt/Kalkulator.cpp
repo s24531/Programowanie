@@ -10,10 +10,10 @@ auto error () -> void
 }
 
 auto enter_into_vector(std::vector<std::vector<int>> matrix, int row, int col, int el) -> std::vector<std::vector<int>>
-{
-    std::vector<int> matrix1;
+{  
     for(auto i = 0; i < row; i++) 
     {
+        std::vector<int> matrix1;
         for(auto j = 0; j < col; j++)
         {
             matrix1.push_back(el);
@@ -92,34 +92,40 @@ auto display_matrix(std::vector<std::vector<int>> matrix) -> void
     }
 }
 
-// auto Sarrus_method(int** matrix[20][20]) -> int
-// {
-//     int oper1 = matrix[0][0] * matrix[1][1] * matrix[2][2] + matrix[0][1] * matrix[1][2] * matrix[2][0] + matrix[0][2] * matrix[1][0] * matrix[2][1];
-//     int oper2 = matrix[0][2] * matrix[1][1] * matrix[2][1] + matrix[0][0] * matrix[1][2] * matrix[2][1] + matrix[0][1] * matrix[1][0] * matrix[2][2];
-//     int result = oper1 - oper2;
+auto Sarrus_method(std::vector<std::vector<int>> matrix) -> int
+{
+    int oper1 = matrix[0][0] * matrix[1][1] * matrix[2][2] + matrix[0][1] * matrix[1][2] * matrix[2][0] + matrix[0][2] * matrix[1][0] * matrix[2][1];
+    int oper2 = matrix[0][2] * matrix[1][1] * matrix[2][1] + matrix[0][0] * matrix[1][2] * matrix[2][1] + matrix[0][1] * matrix[1][0] * matrix[2][2];
+    int result = oper1 - oper2;
 
-//     return result;
-// }
+    return result;
+}
 
-// auto Laplace_method (int matrix, int size) -> int
-// {
-//     int * tempmatrix = new int[size * size];
-//     int oper;
-//     int det=0;
+auto Laplace_method(std::vector<std::vector<int>> matrix) -> int
+{
+    int det = 0;
 
-//     for (auto i = 0; i < size; i++) 
-//     {
-//         for(auto j = 0; j < size; j++)
-//         {
-//             oper = (i)*size+(j+1);
-//             tempmatrix[i*size+j] = matrix[oper];
-//         }
-//     }
-
-//     display_matrix(tempmatrix, size-1, size-1);
-
-//     return det;
-// }
+    for (int p = 0; p < matrix[0].size(); p++)
+    {               
+        std::vector<std::vector<int>> tempmatrix;
+        for (int i = 1; i < matrix.size(); i++)
+        {
+            std::vector<int> tempRow;
+            for (int j = 0; j < matrix[i].size(); j++)
+            {
+                if (j != p)
+                {
+                    temprow.push_back(matrix[i][j]);
+            }
+            if (temprow.size() > 0)
+            {
+                tempmatrix.push_back(tempRow);
+            }    
+        }
+        det = det + matrix[0][p] * pow(-1, p) * Laplace_method(tempmatrix);
+    }
+    return det;
+}
 
 auto main() -> int
 {
@@ -273,7 +279,8 @@ auto main() -> int
             
 
             //wyświetlenie podanej przez uzytkownika macierzy
-            display_matrix(matrixA, row1, col1);
+            std::cout << "\nMacierz podana przez użytkownika:\n";
+            display_matrix(matrixA);
 
 
             std::swap(row1,col1);
@@ -300,54 +307,56 @@ auto main() -> int
 
             break;
         }
-        // case 4:
-        // {
-        //     int result1;
+        case 4:
+        {
+            int result1 = 0;
 
-        //     std::cout << "Podaj ilość wierszy macierzy: "; 
-        //     std::cin >> row1;
-        //     std::cout << "Podaj ilość kolumn macierzy: ";
-        //     std::cin >> col1;
-
-
-        //     //jeśli liczba kolumn i wierszy nie są sobie równe to zakończ program
-        //     if(row1!=col1)
-        //     {   
-        //         atexit(error);
-        //         exit(0);
-        //     }
+            std::cout << "Podaj ilość wierszy macierzy: "; 
+            std::cin >> row1;
+            std::cout << "Podaj ilość kolumn macierzy: ";
+            std::cin >> col1;
 
 
-        //     std::cout << "Wprowadź elementy do macierzy: \n";
-        //     matrixA = enter_matrix(row1, col1);
-
-        //     if(row1 == 1 && col1 == 1)
-        //     {
-        //         result1 = matrixA[0][0]; 
-        //     }
-        //     else if(row1 == 2 && col1 == 2)
-        //     {
-        //         result1 = matrixA[0][0] * matrixA[1][1] - matrixA[0][1] * matrixA[1][1];
-        //     }
-        //     else if(row1 == 3 && col1 == 3)
-        //     {
-        //         //Metoda Sarrusa;
-        //         result1 = Sarrus_method(matrixA);
-        //     }
-        //     else
-        //     {
-        //         //Metoda Laplace'a
-        //         //result1 = Laplace_method(matrixA, row1); //<- potrzebny jest tylko jeden rozmiar jesli obydwie liczby są takie same 
-        //     }
-
-        //     display_matrix(matrixA, row1, col1);
+            //jeśli liczba kolumn i wierszy nie są sobie równe to zakończ program
+            if(row1!=col1)
+            {   
+                atexit(error);
+                exit(0);
+            }
 
 
-        //     std::cout << "\nWyznacznik macierzy: " << result1 << "\n";
+            std::cout << "Wprowadź elementy do macierzy: \n";
+            matrixA = enter_matrix(row1, col1);
+
+            if(row1 == 1 && col1 == 1)
+            {
+                result1 = matrixA[0][0]; 
+            }
+            else if(row1 == 2 && col1 == 2)
+            {
+                result1 = matrixA[0][0] * matrixA[1][1] - matrixA[0][1] * matrixA[1][0];
+            }
+            else if(row1 == 3 && col1 == 3)
+            {
+                //Metoda Sarrusa;
+                result1 = Sarrus_method(matrixA);
+            }
+            else
+            {
+                //Metoda Laplace'a
+                result1 = Laplace_method(matrixA);
+            }
+
+            //wyświetlenie podanej przez uzytkownika macierzy
+            std::cout << "\nMacierz podana przez użytkownika:\n";
+            display_matrix(matrixA);
 
 
-        //     break;
-        // }
+            std::cout << "\nWyznacznik macierzy: " << result1 << "\n";
+
+
+            break;
+        }
     }
     return 0;
 }
