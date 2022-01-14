@@ -115,9 +115,10 @@ auto Laplace_method(std::vector<std::vector<int>> matrix) -> int
             {
                 if (j != p)
                 {
-                    temprow.push_back(matrix[i][j]);
+                    tempRow.push_back(matrix[i][j]);
+                }
             }
-            if (temprow.size() > 0)
+            if (tempRow.size() > 0)
             {
                 tempmatrix.push_back(tempRow);
             }    
@@ -358,6 +359,7 @@ auto main() -> int
             break;
         }
     }
+
     return 0;
 }
 
