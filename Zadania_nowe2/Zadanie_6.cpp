@@ -38,11 +38,12 @@ auto get_best_student(std::vector<student> uczen) -> void
 int main()
 {
     std::vector<student> stud;
+    auto ocen = std::vector<double> {3,5,4,1};
 
-    student st1("Maciek",3);
-    student st2("Bartek",5);
-    student st3("Paweł",4);
-    student st4("Jan",1);
+    student st1("Maciek",ocen[0]);
+    student st2("Bartek",ocen[1]);
+    student st3("Paweł",ocen[2]);
+    student st4("Jan",ocen[3]);
 
     stud.push_back(st1);
     stud.push_back(st2);
