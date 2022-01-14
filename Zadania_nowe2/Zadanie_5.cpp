@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-void split(std::string zdanie)
+auto split(std::string zdanie) -> std::vector<std::string>
 {
 	std::vector<std::string> slowa;
 
@@ -24,11 +24,7 @@ void split(std::string zdanie)
 
 	slowa.push_back(temp);
 
-	for(int i=0;i<slowa.size();i++)
-    {
-        std::cout << slowa[i] << " ";
-    }
-    std::cout << std::endl;
+	return slowa;
 }
 
 auto main() -> int
@@ -38,7 +34,16 @@ auto main() -> int
     std::cout << "Napisz zdanie: ";
     std::getline(std::cin, zdanie);
 
-    std::cout << "Zdanie w wektorze: "; 
-    split(zdanie);
+    std::vector<std::string> zd; 
+
+    std::cout << "Zdanie w wektorze: \n"; 
+    
+    zd = split(zdanie);
+
+    for(int i=0;i<zd.size();i++)
+    {
+        std::cout << "[" << i << "]" << zd[i] << "\n";
+    }
+
     return 0;
 }
