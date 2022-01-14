@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <iostream>
 
 auto sort_asc(int a[], int n) -> void
@@ -17,6 +18,45 @@ auto sort_asc(int a[], int n) -> void
     }
 }
 
+=======
+#include<iostream>
+
+auto quicksort(int a[], int lewy, int prawy) -> void
+{
+	if(prawy<=lewy) return;
+	
+	int i = lewy - 1;
+    int j = prawy + 1;
+	int k = a[(lewy+prawy)/2];
+	
+	while(true)
+	{
+		while(k>a[++i]);
+
+		while(k<a[--j]);
+
+		if(i<=j)
+        {
+            swap(a[i],a[j]);
+        }	
+		else
+        {
+            break;
+        }
+	}
+
+	if(j>lewy)
+    {
+        quicksort(a, lewy, j);
+    }
+	
+	if(i<prawy)
+    {
+        quicksort(a, i, prawy);
+    }
+	
+}
+>>>>>>> e4ae22736fab9127127f448915dd930e75deca24
 auto main() -> int
 {
     int a[100];
@@ -31,7 +71,11 @@ auto main() -> int
         std::cin >> a[i];
     }
     
+<<<<<<< HEAD
     sort_asc(a,n);
+=======
+    quicksort(a,0,n-1);
+>>>>>>> e4ae22736fab9127127f448915dd930e75deca24
     
     std::cout << "\nPosortowane: \n";
     for(auto i=0;i<n;i++)
@@ -40,4 +84,9 @@ auto main() -> int
     }
 
     return 0;
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> e4ae22736fab9127127f448915dd930e75deca24
