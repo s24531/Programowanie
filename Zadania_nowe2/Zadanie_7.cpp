@@ -27,11 +27,11 @@ struct group
    
 };
 
-auto enter_into_group(std::vector<student> stud, std::string uczen) -> void
+auto enter_into_group(std::vector<student> stud, student uczen) -> void
 {
   stud.push_back(uczen);
 
-  //std::cout << stud[0].imie;
+  std::cout << uczen.imie << "\n"; //<-- wyświetlony student z grupy
 }
 
 auto main() -> int
@@ -40,7 +40,7 @@ auto main() -> int
 
   student st1("Bartek");
 
-  enter_into_group(p, st1.imie);
+  enter_into_group(p, st1);
 
 
     return 0;
