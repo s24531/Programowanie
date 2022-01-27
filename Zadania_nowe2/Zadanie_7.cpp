@@ -5,43 +5,47 @@
 struct student
 {
   std::string imie;
-  
-  student(std::string i)
-  {
-    imie = i;
-  }
-
-
+  std::string nazwisko;
+  std::vector<double> oc;
+    
 };
 
 struct group
 {
   std::string nazwa;
-  std::vector<student> studenci;
-
-  group(std::string a, std::vector<student> s)
-  {
-    nazwa = a;
-    studenci = s;
-  }
-   
+  std::vector<student> studenci; 
 };
 
-auto enter_into_group(std::vector<student> stud, student uczen) -> void
+auto enter_into_group(group& stud, student uczen) -> void
 {
-  stud.push_back(uczen);
-
-  std::cout << uczen.imie << "\n"; //<-- wyświetlony student z grupy
+  stud.studenci.push_back(uczen); 
 }
 
-auto main() -> int
+int main()
 {
-  std::vector<student> p;
+  auto st1 = student {"Maciek","Nowak",{3,5,4,1}};
+  auto st2 = student {"Bartek","Sokołowski",{1,4,2,5}};
+  auto st3 = student {"Paweł","Kowalski",{2,2,6,3}};
+  auto st4 = student {"Jan","Brzęczyszczykiewicz",{4,6,4,2}};;
 
-  student st1("Bartek");
+  auto gr1 = group {"Gracze", {st1,st2}};
 
-  enter_into_group(p, st1);
+  std::cout << "Studenci w grupie Gracze:" << "\n";
 
+  for(auto stud : gr1.studenci)
+  {
+    std::cout << stud.imie << " " << stud.nazwisko << "\n";
+  }
+    std::cout << "\n";
 
-    return 0;
+    enter_into_group(gr1,st3);
+    enter_into_group(gr1,st4);
+
+    std::cout << "Studenci w grupie Gracze po dodaniu dwóch studentów:" << "\n";
+    for(auto stud : gr1.studenci)
+    {
+        std::cout << stud.imie << " " << stud.nazwisko << "\n";
+    }
+
+  return 0;
 }
