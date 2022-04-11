@@ -8,4 +8,8 @@ protected String brand;
         this.color = color;
         this.brand = brand;
     }
+    void nazwaMetody(){
+        System.out.println(color);
+        System.out.println(brand);
+    }
 }

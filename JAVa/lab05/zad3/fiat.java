@@ -11,5 +11,10 @@ public fiat(String color, String brand) {
         super(color, brand);
         this.engine = engine;
     }
+    @Override
+    void nazwaMetody(){
+        super.nazwaMetody();
+
+    }
 }
 

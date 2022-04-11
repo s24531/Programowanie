@@ -10,5 +10,10 @@ public class polonez extends Car{
         super(color, brand);
         this.age = age;
     }
+    @Override
+    void nazwaMetody(){
+        super.nazwaMetody();
+
+    }
 }
 

@@ -10,4 +10,8 @@ private String rims;
         super(color, brand);
         this.rims = rims;
     }
+    @Override
+    void nazwaMetody(){
+        super.nazwaMetody();
+    }
 }
