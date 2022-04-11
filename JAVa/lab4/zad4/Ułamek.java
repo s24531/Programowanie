@@ -10,15 +10,15 @@ public class Ułamek {
     }
 
     public Ułamek dodawanie(Ułamek ulamek) {
-        int sumaIloczyn = x + ulamek.x;
-        int sumaMianownik = y + ulamek.y;
+        int sumaIloczyn = (x*ulamek.y) + (ulamek.x*y);
+        int sumaMianownik = y * ulamek.y;
         Ułamek zwrot = new Ułamek(sumaIloczyn, sumaMianownik); //zakladajac ze was kosntruktor wyglada tak : new Ulamek(int x, int y);
         return zwrot;
     }
 
     public Ułamek odejmowanie(Ułamek ulamek) {
-        int roznicaIloczyn = x - ulamek.x;
-        int roznicaMianownik = y - ulamek.y;
+        int roznicaIloczyn = (x * ulamek.y) - (ulamek.x * y);
+        int roznicaMianownik = y * ulamek.y;
         Ułamek zwrot = new Ułamek(roznicaIloczyn, roznicaMianownik); //zakladajac ze was kosntruktor wyglada tak : new Ulamek(int x, int y);
         return zwrot;
     }
@@ -30,15 +30,18 @@ public class Ułamek {
         return zwrot;
     }
         public Ułamek dzielenie (Ułamek ulamek){
-            int dzielIloczyn = x / ulamek.x;
-            int dzielMianownik = y / ulamek.y;
+            int dzielIloczyn = x * ulamek.y;
+            int dzielMianownik = y * ulamek.x;
             Ułamek zwrot = new Ułamek(dzielIloczyn, dzielMianownik); //zakladajac ze was kosntruktor wyglada tak : new Ulamek(int x, int y);
             return zwrot;
         }
 
     @Override
     public String toString() {
-        return "Ułamek{" + "x=" + x + ", y=" + y + '}';
+        return "Ulamek{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
 
